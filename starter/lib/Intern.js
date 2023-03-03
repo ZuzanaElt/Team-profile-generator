@@ -3,16 +3,16 @@
 const Employee = require ('./Employee')
 
 class Intern extends Employee {
-   constructor(nameEm, id, email, school){
-   super(nameEm, id, email );
-   this.gitHubUserName = gitHubUserName;
+   constructor(name, id, email, school){
+   super(name, id, email );
+   this.school = school;
   }
    
    getSchool(){
-       console.log("getGitHub method in employee")
+       return this.school
     };
    getRole(){
-    
+    return 'Intern'
     };
 }
 

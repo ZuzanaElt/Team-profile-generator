@@ -58,3 +58,43 @@ inquirer
         })
     
 
+
+   // checkingNewEmployeeRole();
+    
+        
+ 
+
+
+//  const readmeTemplate = generateMarkdown(answers);
+//             // function to write README file
+//             fs.writeFile('../README.md', readmeTemplate , (error) => { 
+//                 return error
+//                 ? console.error(error)
+//                 : console.log('Your README file is now generated');
+//             });
+
+
+//  checkingNewEmployeeRole =() => {
+//     inquirer
+//     .prompt ([
+//         {
+//             type: 'rawlist',
+//             name: 'employmentRole',
+//             message: 'Next employee - who do you want to add?',
+//             choices:['engineer', 'intern','finish bulding the team'],
+//         },
+//     ])
+//     .then (answers2 => {
+//         if (answers2.employmentRole === 'engineer'){
+//              nextRole = 'engineer'
+//             console.log("add an engineer")
+//             const newEngineer = new Engineer(answers)
+//         } else if (answers2. employmentRole === 'intern'){
+//             nextRole = 'engineer'
+//             console.log("add an intern")
+//             console.log(nextRole)}
+//         else {
+//            nextRole='none'
+//             console.log('thank you for updating your team information')}
+//         })
+// }
