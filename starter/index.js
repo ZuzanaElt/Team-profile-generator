@@ -10,59 +10,159 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+let team=[]
 
+
+const employeeData =[
+    {
+        type: 'input',
+        message: "employee's name",
+        name: 'name',
+    },
+    {
+        type: 'input',
+        message: "email",
+        name: 'email',
+    },
+    
+    {
+        type: 'input',
+        message: "employee ID",
+        name: 'id',
+    },
+];
+
+const managerQ = [
+    {
+        type: 'input',
+        message: "employee's name",
+        name: 'name',
+    },
+    {
+        type: 'input',
+        message: "email",
+        name: 'email',
+    },
+    
+    {
+        type: 'input',
+        message: "employee ID",
+        name: 'id',
+    },
+    {
+        type: 'input',
+        message: "Office number",
+        name: 'officeNumber',
+    },
+];
+
+const engineerData = [
+    {
+        type: 'input',
+        message: "employee's name",
+        name: 'name',
+    },
+    {
+        type: 'input',
+        message: "email",
+        name: 'email',
+    },
+    
+    {
+        type: 'input',
+        message: "employee ID",
+        name: 'id',
+    },
+    {
+        type: 'input',
+        message: "Github username",
+        name: 'github',
+    },
+];
+
+const internData = [
+    {
+        type: 'input',
+        message: "employee's name",
+        name: 'name',
+    },
+    {
+        type: 'input',
+        message: "email",
+        name: 'email',
+    },
+    
+    {
+        type: 'input',
+        message: "employee ID",
+        name: 'id',
+    },
+    {
+        type: 'input',
+        message: "School",
+        name: 'school',
+    },
+]
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+
 inquirer
-    .prompt([
-        {
-            type: 'confirm',
-            message: "Are you ready to set-up your team?",
-            name: 'ready',
-        }
-        
+    .prompt( managerQ)
+    .then(answers => {
+           console.log('answers facts are: ',answers);
 
-    ])
- .then(answer => {
-        if (answer.ready === false){              
-            console.log('Oh well, maybe next time')
-        } 
-        else {
-            console.log("Let's create a new team. Let's start with your manager:")
+            let manager = new Manager(answers.name, answers.id, answers.email,answers.officeNumber);
+            console.log('manager is: ', manager);
+            //const managerRole = managerNew.getRole()//this works const testing = managerNew.getRole()
+            //manager.push(managerRole)//adding role to manager
+
+            //need to add to array of team
         
-        inquirer
-            .prompt([
-                {
-                    type: 'input',
-                    message: "employee's name",
-                    name: 'Name of employee',
-                },
-                {
-                    type: 'input',
-                    message: "employee ID",
-                    name: 'employee ID',
-                },
-                {
-                    type: 'input',
-                    message: "Email address",
-                    name: 'email',
-                },
-               
-            ])
-        .then(answer2 => {
-            const managerInfo = answer2;
-            console.log("manager data", managerInfo)
-        })
-        
-        }
-        })
-    
+            inquirer
+                .prompt([
+                    {
+                        type: 'rawlist',
+                        name: 'role',
+                        message: "choose next employee's role",
+                        choices: ['engineer', 'intern','finish building the team'],
+                    },
+                ])
+                .then(roleChoice => {
+                    console.log('chosen next role is: ',roleChoice)
+                    if (roleChoice.role ==='engineer'){
+                        inquirer
+                             .prompt(engineerData)
+                            .then(engineerAns =>{
+                                let engineer = new Engineer(engineerAns.name, engineerAns.id, engineerAns.email, engineerAns.github)
+                                console.log ('engineer: ', engineer)
+                                //need to add to array of team
+                            })
+                    }else if (roleChoice.role ==='intern'){
+                        inquirer
+                             .prompt(internData)
+                            .then(internAns =>{
+                                let intern = new Intern (internAns.name, internAns.id, internAns.email, internAns.school)
+                                console.log ('intern: ', intern)
+                                //need to add to array of team
+                            })
+                    } else {
+                        console.log('html needs to be generated here')
+                    }
 
 
-   // checkingNewEmployeeRole();
-    
-        
- 
+                })
+            
+            })
+
+
+
+
+        //fs.writeFile(outputPath,render(manager),'utf-8',(error) => {
+                // return error
+                // ?console.log(error)
+                // :console.log ('SO THIS WORKED..WOW',managerNew)
+                // })
+            
 
 
 //  const readmeTemplate = generateMarkdown(answers);
@@ -73,28 +173,3 @@ inquirer
 //                 : console.log('Your README file is now generated');
 //             });
 
-
-//  checkingNewEmployeeRole =() => {
-//     inquirer
-//     .prompt ([
-//         {
-//             type: 'rawlist',
-//             name: 'employmentRole',
-//             message: 'Next employee - who do you want to add?',
-//             choices:['engineer', 'intern','finish bulding the team'],
-//         },
-//     ])
-//     .then (answers2 => {
-//         if (answers2.employmentRole === 'engineer'){
-//              nextRole = 'engineer'
-//             console.log("add an engineer")
-//             const newEngineer = new Engineer(answers)
-//         } else if (answers2. employmentRole === 'intern'){
-//             nextRole = 'engineer'
-//             console.log("add an intern")
-//             console.log(nextRole)}
-//         else {
-//            nextRole='none'
-//             console.log('thank you for updating your team information')}
-//         })
-// }
