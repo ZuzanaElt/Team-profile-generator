@@ -35,7 +35,7 @@ const employeeData =[
 const managerQ = [
     {
         type: 'input',
-        message: "employee's name",
+        message: "Manager's name",
         name: 'name',
     },
     {
@@ -105,8 +105,7 @@ const internData = [
 ]
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 function nextEmployee (){
-
-            
+    
     inquirer
         .prompt([
             {
@@ -117,35 +116,38 @@ function nextEmployee (){
             },
         ])
         .then(roleChoice => {
-            console.log('chosen next role is: ',roleChoice)
-            if (roleChoice.role ==='engineer'){
-                inquirer
-                    .prompt(engineerData)
-                    .then(engineerAns =>{
-                        let engineer = new Engineer(engineerAns.name, engineerAns.id, engineerAns.email, engineerAns.github)
-                        console.log ('engineer: ', engineer)
-                        team.push(engineer)
-                        console.log('team with manager and engineer: ', team)
-                        nextEmployee()
+            
+                if (roleChoice.role ==='engineer'){
+                    inquirer
+                        .prompt(engineerData)
+                        .then(engineerAns =>{
+                            let engineer = new Engineer(engineerAns.name, engineerAns.id, engineerAns.email, engineerAns.github)
+                            
+                            team.push(engineer)
+                            console.log('team with manager and engineer: ', team)
+                            nextEmployee()
+                            return team
+                        })
+                }else if (roleChoice.role ==='intern'){
+                    inquirer
+                        .prompt(internData)
+                        .then(internAns =>{
+                            let intern = new Intern (internAns.name, internAns.id, internAns.email, internAns.school)
+                            
+                            team.push(intern)
+                            console.log('team with manager and intern: ', team)
+                            nextEmployee()
+                            return team
+                        })
+                } else {
+                console.log ('The final team',team)
+                fs.writeFile('team.html', render(team),'utf-8',(error) => {
+                    return error
+                    ?console.log(error)
+                    :console.log ('SO THIS WORKED..WOW',team)
                     })
-            }else if (roleChoice.role ==='intern'){
-                inquirer
-                    .prompt(internData)
-                    .then(internAns =>{
-                        let intern = new Intern (internAns.name, internAns.id, internAns.email, internAns.school)
-                        console.log ('intern: ', intern)
-                        team.push(intern)
-                        console.log('team with manager and intern: ', team)
-                        nextEmployee()
-                        //need to add to array of team
-                    })
-            } else {
-                console.log ('team without addition',team)
-                console.log('html needs to be generated here')
-                return
-            }
-
-
+                return team
+            }; 
         })
 }
 
@@ -155,24 +157,19 @@ inquirer
            console.log('answers facts are: ',answers);
 
             let manager = new Manager(answers.name, answers.id, answers.email,answers.officeNumber);
-            console.log('manager is: ', manager);
-
-            //
             team.push(manager)
-            console.log('team is with manager: ', team)
-            nextEmployee();
             
+            nextEmployee();
+           
         })
+       
         
 
 
 
 
-        //fs.writeFile(outputPath,render(manager),'utf-8',(error) => {
-                // return error
-                // ?console.log(error)
-                // :console.log ('SO THIS WORKED..WOW',managerNew)
-                // })
+
+        
             
 
 
