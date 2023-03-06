@@ -28,3 +28,6 @@ body{
 .team-area{
     flex-wrap: wrap;
 }
+.container{
+    justify-content: center;
+}
