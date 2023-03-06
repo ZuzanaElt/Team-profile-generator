@@ -9,7 +9,6 @@ const fs = require("fs");
 //const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
-
 let team=[]
 
 
@@ -18,11 +17,6 @@ const managerQ = [
         type: 'input',
         message: "Manager's name",
         name: 'name',
-    },
-    {
-        type: 'input',
-        message: "Team's name",
-        name: 'teamName',
     },
     {
         type: 'input',
@@ -42,7 +36,7 @@ const managerQ = [
     },
 ];
 
-const engineerData = [
+const engineerQ = [
     {
         type: 'input',
         message: "employee's name",
@@ -66,7 +60,7 @@ const engineerData = [
     },
 ];
 
-const internData = [
+const internQ = [
     {
         type: 'input',
         message: "employee's name",
@@ -97,14 +91,14 @@ function nextEmployee (){
                 type: 'rawlist',
                 name: 'role',
                 message: "choose next employee's role",
-                choices: ['engineer', 'intern','finish building the team'],
+                choices: ['engineer', 'intern','Or do you want to finish building the team?'],
             },
         ])
         .then(roleChoice => {
             
                 if (roleChoice.role ==='engineer'){
                     inquirer
-                        .prompt(engineerData)
+                        .prompt(engineerQ)
                         .then(engineerAns =>{
                             let engineer = new Engineer(engineerAns.name, engineerAns.id, engineerAns.email, engineerAns.github);
                             team.push(engineer);
@@ -113,7 +107,7 @@ function nextEmployee (){
                         })
                 }else if (roleChoice.role ==='intern'){
                     inquirer
-                        .prompt(internData)
+                        .prompt(internQ)
                         .then(internAns =>{
                             let intern = new Intern (internAns.name, internAns.id, internAns.email, internAns.school);
                             team.push(intern);
@@ -131,16 +125,15 @@ function nextEmployee (){
         })
 }
 
+function init(){
 inquirer
     .prompt( managerQ)
     .then(answers => {
 
             let manager = new Manager(answers.name, answers.id, answers.email,answers.officeNumber);
             team.push(manager);
-            
-            console.log('@looking for team name',answers.teamName)
-           
             nextEmployee();
         })
        
-        
+};
+init();      

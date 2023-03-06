@@ -15,10 +15,16 @@ body{
     border: 3px rgb(243, 198, 115) solid;
     margin:8px;
 }
-.card-header{
+.header-manager{
     background-color:rgb(240, 81, 108);
 }
-#card-cont{
-    justify-content: center;
-    margin-bottom: 30px;
+
+.header-intern{
+    background-color:rgb(235, 181, 190)
+}
+.header-engineer{
+    background-color:rgb(241, 118, 141)
+}
+.team-area{
+    flex-wrap: wrap;
 }
