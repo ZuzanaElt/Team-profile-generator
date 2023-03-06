@@ -5,7 +5,7 @@
 -----   
         
 ## DESCRIPTION
-Using node.js we can display team members together with their basic information.
+Using node.js we can display team members together with their basic information such as name, role, email address etc.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ Using node.js we can display team members together with their basic information.
 -----
 
 ## Installation
-  To install the project you need to fork this repo and installit in your command application. Open the index.js and folow prompts in your command line
+  To install the project you need to fork this repo and install it in your command application. Open the index.js and follow prompts in your command line
 
 
 ## Usage
@@ -28,11 +28,11 @@ Using node.js we can display team members together with their basic information.
 
 
 ## Contribution guidelines
-  Please get in touch
+  Please get in touch if you would like to contribute.
 
 
 ## Test instructions
-  No tests required as aplication was tested. If needed NPM test can be run in your terminal.
+  No tests are required as aplication was tested. If needed npm test can be run in your terminal.
 
             
 ## Questions
@@ -42,7 +42,7 @@ Contact email: zuzanaeltom@gmail.com
 
 
 ## License
-This application is covered under MIT Licence licence. 
+This application is covered under MIT Licence. 
 To learn more about licences including this one visit https://choosealicense.com/
 
 ## Screenshots
