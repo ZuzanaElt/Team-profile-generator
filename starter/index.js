@@ -2,16 +2,18 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-const path = require("path");
+//const path = require("path");
 const fs = require("fs");
 
 //const OUTPUT_DIR = path.resolve(__dirname, "output");
 //const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+
+//creating array team for collecting inputted information
 let team=[]
 
-
+//constants to include employee questions
 const managerQ = [
     {
         type: 'input',
@@ -83,6 +85,8 @@ const internQ = [
         name: 'school',
     },
 ]
+
+//function to generate additional employees
 function nextEmployee (){
     
     inquirer
@@ -91,7 +95,7 @@ function nextEmployee (){
                 type: 'rawlist',
                 name: 'role',
                 message: "choose next employee's role",
-                choices: ['engineer', 'intern','Or do you want to finish building the team?'],
+                choices: ['engineer', 'intern','Finish building the team?'],
             },
         ])
         .then(roleChoice => {
@@ -115,16 +119,22 @@ function nextEmployee (){
                             return team
                         })
                 } else {
-                fs.writeFile('output/team.html', render(team),'utf-8',(error) => {
-                    return error
-                    ?console.log(error)
-                    :console.log ('')
-                    })
-                return team
-            }; 
+                writeFileFun();
+                }; 
         })
 }
 
+//function to write the final html file
+function writeFileFun(){
+    fs.writeFile('output/team.html', render(team),'utf-8',(error) => {
+        return error
+        ?console.log(error)
+        :console.log ('')
+        })
+    return team
+}
+
+//initialising the process
 function init(){
 inquirer
     .prompt( managerQ)
@@ -133,7 +143,8 @@ inquirer
             let manager = new Manager(answers.name, answers.id, answers.email,answers.officeNumber);
             team.push(manager);
             nextEmployee();
-        })
-       
+        }) 
 };
-init();      
+init();   
+
+
