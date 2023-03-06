@@ -50,7 +50,7 @@ To learn more about licences including this one visit https://choosealicense.com
 Completed application:
 --------------------------------------------------------------------------------
 
-![Completed application](assets/Screenshot%20of%20the%20team%20page.png)
+![Team page](assets/Team%20page.png)
 
 
 Npm test run:
