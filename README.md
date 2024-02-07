@@ -38,7 +38,7 @@ Using node.js we can display team members together with their basic information 
 ## Questions
 If you have any additional questions not answered here or wish to get in touch regarding developments, you can use the following links:
 Github link: [github.com/ZuzanaElt](https://https://github.com/ZuzanaElt)
-Contact email: zuzanaeltom@gmail.com 
+Contact email: zuzanaknightova@gmail.com 
 
 
 ## License
